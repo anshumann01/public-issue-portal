@@ -18,7 +18,7 @@ const LoginPage = () => {
     role: "Citizen",
     }, 
     {
-    email: "user@admin.com",
+    email: "admin@example.com",
     password: "password123",
     role: "Admin",
     }

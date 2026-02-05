@@ -6,6 +6,9 @@ import ReportedIssue from './ReportedIssue'
 import { useState, useEffect } from "react";
 
 
+
+
+
 const UserDashboard = () => {
   const [issues, setIssues] = useState([]);
   useEffect(() => {
@@ -13,6 +16,26 @@ const UserDashboard = () => {
   setIssues(storedIssues);
 }, []);
 
+const handleResolve = (id) => {
+  const updatedIssues = issues.map((issue) =>
+    issue.id === id
+      ? { ...issue, status: "Resolved" }
+      : issue
+  );
+
+  setIssues(updatedIssues);
+  localStorage.setItem("issues", JSON.stringify(updatedIssues));
+};
+
+
+const handleDelete = (id) => {
+  const updatedIssues = issues.filter(
+    (issue) => issue.id !== id
+  );
+
+  setIssues(updatedIssues);
+  localStorage.setItem("issues", JSON.stringify(updatedIssues));
+};
   return (
     <>
     <Navbar></Navbar>
@@ -34,7 +57,7 @@ const UserDashboard = () => {
               <p className="text-gray-400">No issues reported yet</p>
             ) : (
               issues.map((issue) => (
-                <ReportedIssue key={issue.id} issue={issue} />
+                <ReportedIssue key={issue.id} issue={issue} onResolve={handleResolve} onDelete={handleDelete}/>
               ))
             )}
         </div>
