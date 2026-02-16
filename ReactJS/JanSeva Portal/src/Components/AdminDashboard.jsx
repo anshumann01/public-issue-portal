@@ -31,7 +31,10 @@ const AdminDashboard = () => {
   setIssues(updatedIssues);
   localStorage.setItem("issues", JSON.stringify(updatedIssues));
 };
-
+const totalIssues = issues.length;
+const resolvedIssues = issues.filter(issue => issue.status === "Resolved").length;
+const pendingIssues = issues.filter(issue => issue.status !== "Resolved").length;
+const citizens = [...new Set(issues.map(issue => issue.userName))].length;
   return (
     <>
     <Navbar></Navbar>
@@ -40,10 +43,10 @@ const AdminDashboard = () => {
       <h1 className="text-2xl font-bold">Admin Dashboard</h1>
       <p className="text-gray-500">Manage and resolve reported public issues</p>
       <div className="flex gap-4">
-        <DataCards/>
-        <DataCards/>
-        <DataCards/>
-        <DataCards/>
+        <DataCards issue="Total Issues" count={totalIssues}/>
+        <DataCards issue="Resolved Issues" count={resolvedIssues}/>
+        <DataCards issue="Pending Issues" count={pendingIssues}/>
+        <DataCards issue="Citizens" count={citizens}/>
       </div>
       <h2 className="text-2xl font-semibold mb-4">
         All Reported Issues

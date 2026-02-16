@@ -35,7 +35,13 @@ const handleDelete = (id) => {
 
   setIssues(updatedIssues);
   localStorage.setItem("issues", JSON.stringify(updatedIssues));
+
+
 };
+
+    const totalIssues = issues.length;
+    const resolvedIssues = issues.filter(issue => issue.status === "Resolved").length;
+    const pendingIssues = issues.filter(issue => issue.status !== "Resolved").length;
   return (
     <>
     <Navbar></Navbar>
@@ -45,9 +51,9 @@ const handleDelete = (id) => {
         <p className='text-gray-500'>Report and track public issues in your area</p>
       </div>
       <div className='flex gap-8 w-full'>
-        <DataCards/>
-        <DataCards/>
-        <DataCards/>
+        <DataCards issue="Total Issues" count={totalIssues}/>
+        <DataCards issue="Resolved Issues" count={resolvedIssues}/>
+        <DataCards issue="Pending Issue" count={pendingIssues}/>
       </div>
       <div className='flex gap-12 w-full'>
         <NewIssue issues={issues} setIssues={setIssues}></NewIssue>
