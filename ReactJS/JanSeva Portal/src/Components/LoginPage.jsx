@@ -18,7 +18,7 @@ const LoginPage = () => {
     role: "Citizen",
     }, 
     {
-    email: "admin@example.com",
+    email: "user@admin.com",
     password: "password123",
     role: "Admin",
     }
@@ -73,7 +73,7 @@ const LoginPage = () => {
                 <div className='text-xs text-gray-500 flex flex-col  border bg-gray-50 border-gray-400 p-4 rounded-lg mt-4 w-74'>
             <p className='font-semibold'>Demo Credentials:</p>
             <p><span className='font-semibold'>User:</span> user@example.com</p>
-            <p><span className='font-semibold'>Admin:</span> admin@example.com</p>
+            <p><span className='font-semibold'>Admin:</span> user@admin.com</p>
             <p><span className='font-semibold'>Password: </span>password123</p>
         </div>
             </form>
